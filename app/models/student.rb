@@ -3,6 +3,9 @@ require_relative '../../db/config'
 class Student < ActiveRecord::Base
 # implement your Student model here
 
+  has_many :student_teachers
+  has_many :teachers, through: :student_teachers
+
   validates :email, uniqueness: true
   validate :email_validate
   validates :age, numericality: { greater_than_or_equal_to: 5 }
